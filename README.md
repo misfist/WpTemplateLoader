@@ -1,4 +1,4 @@
-# WordPress Template Loader for Plugins
+# WordPress Plugin Template Loader
 A class that allows loading WordPress template parts in plugins. Based on the [Gamajo Template Loader](https://github.com/GaryJones/Gamajo-Template-Loader), adapted to PSR-2 and PSR-4 coding standards.
 
 ## Description
