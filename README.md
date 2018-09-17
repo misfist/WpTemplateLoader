@@ -10,6 +10,7 @@ This fork uses modern PHP coding standards such as PSR-2 code formatting, PSR-4 
 ## Installation
 
 This isn't a WordPress plugin on its own, it must be loaded as a Composer dependency.
+
 `composer require gamajo/template-loader`
 
 ## Instantiate class
