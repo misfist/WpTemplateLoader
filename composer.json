@@ -1,13 +1,13 @@
 {
-  "name": "gamajo/template-loader",
-  "description": "A class for your WordPress plugin, to allow loading template parts with fallback through the child theme > parent theme > plugin",
+  "name": "rexrana/wp-plugin-template-loader",
+  "description": "A class that allows loading WordPress template parts in plugins. Based on the Gamajo Template Loader, adapted to PSR-2 and PSR-4 coding standards",
   "keywords": ["wordpress", "templates"],
   "homepage": "https://github.com/GaryJones/Gamajo-Template-Loader",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
-      "name": "Gary Jones",
-      "homepage": "https://gamajo.com",
+      "name": "Peter Hebert, Rex Rana Design and Development Ltd.",
+      "homepage": "https://rexrana.ca/",
       "role": "Developer"
     }
   ],
@@ -15,12 +15,11 @@
     "issues": "https://github.com/GaryJones/Gamajo-Template-Loader/issues"
   },
   "require": {
-    "php": ">=5.2.4"
+    "php": ">=7.1"
   },
   "autoload": {
-    "classmap": ["class-gamajo-template-loader.php"]
-  },
-  "suggest": {
-    "coenjacobs/mozart": "Easily wrap this library with your own prefix, to prevent collisions when multiple plugins use this library"
+    "psr-4": {
+      "RexRana\\WordPressUtils\\": ["src"]
+    }        
   }
 }
