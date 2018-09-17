@@ -3,7 +3,7 @@ A class that allows loading WordPress template parts in plugins. Based on the [G
 
 ## Description
 
-This class builds upon the `get_template_part()` function in WordPress, but allows you to load template parts from your plugin, with built in fallbacks.
+This class builds upon the `getTemplatePart()` function in WordPress, but allows you to load template parts from your plugin, with built in fallbacks.
 
 This fork uses modern PHP coding standards such as PSR-2 code formatting, PSR-4 autoloading, and namespacing, which eliminates the need to make a copy of the class, or to use Mozart to prefix the class name.
 
@@ -11,55 +11,72 @@ This fork uses modern PHP coding standards such as PSR-2 code formatting, PSR-4 
 
 This isn't a WordPress plugin on its own, it must be loaded as a Composer dependency.
 
-`composer require gamajo/template-loader`
+`composer require rexrana/wp-plugin-template-loader`
 
-## Instantiate class
-To instantiate the template loader class, first add a `use` directive to set the namespace of this class, and then assign an instance of the class to a variable:
+## Usage
+
+### Instantiate class
+To instantiate the template loader class, first add a `use` directive to set the namespace of this class, and then assign an instance of the class to a variable. You can optionally pass an array when loading to customize the locations of the theme and plugin template directories, as well as the prefix for action filters. 
 
   ~~~php
   <?php
-  namespace RexRana\FitnessPro;
+  use RexRana\WordPressUtils\PluginTemplateLoader;
 
-  // Template loader instantiated elsewhere, such as the main plugin file.
-  $meal_planner_template_loader = new Meal_Planner_Template_Loader;
+  // set arguments for the template loader class (optional).
+  $loader_params = array(
+    'filter_prefix'             => 'my_plugin_template_loader',
+    'plugin_directory'          => plugin_dir_path( dirname( __FILE__ ) ),
+    'plugin_template_directory' => 'templates',
+    'theme_template_directory'  => 'partials',
+  );
+
+  // Instantiate the template loader.
+  $my_plugin_template_loader = new PluginTemplateLoader($loader_params);
   ~~~
 
-* Use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
+### Load templates
+
+When you call the `GetTemplatePart` method, it looks for the provided template in the following order of directories:
+
+- the value of `theme_template_directory` property in theme directories
+  - child theme
+  - parent theme
+- the plugin template folder - from `plugin_template_directory` property. 
+
 
   ~~~php
-  $meal_planner_template_loader->get_template_part( 'recipe' );
+  $my_plugin_template_loader->getTemplatePart( 'recipe' );
   ~~~
-* If you want to pass data to the template, call the `set_template_data()` method with an array before calling `get_template_part()`. `set_template_data()` returns the loader object to allow for method chaining.
+
+  Using the parameters used in the instantiation example, it will try to load the template in this order: 
+  1. `wp-content/themes/child-theme/partials/recipe.php` 
+  2. `wp-content/themes/parent-theme/partials/recipe.php`
+  3. `wp-content/plugins/meal-planner/templates/recipe.php`.
+
+### Pass data to templates
+
+If you want to pass data to the template, call the `setTemplateData()` method with an array before calling `getTemplatePart()`. `setTemplateData()` returns the loader object to allow for method chaining.
 
   ~~~php
   $data = array( 'foo' => 'bar', 'baz' => 'boom' );
-  $meal_planner_template_loader
-      ->set_template_data( $data );
-      ->get_template_part( 'recipe' );
+  $my_plugin_template_loader
+      ->setTemplateData( $data );
+      ->getTemplatePart( 'recipe' );
   ~~~
   
   The value of `bar` is now available inside the recipe template as `$data->foo`.
   
-  If you wish to use a different variable name, add a second parameter to `set_template_data()`:
+  ### changing the variable name
+  If you wish to use a different variable name, add a second parameter to `setTemplateData()`:
 
   ~~~php
   $data = array( 'foo' => 'bar', 'baz' => 'boom' );
-  $meal_planner_template_loader
-      ->set_template_data( $data, 'context' )
-      ->get_template_part( 'recipe', 'ingredients' );
+  $my_plugin_template_loader
+      ->setTemplateData( $data, 'context' )
+      ->getTemplatePart( 'recipe', 'ingredients' );
   ~~~
   
   The value of `bar` is now available inside the recipe template as `$context->foo`.
-
-  This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/plugins/meal-planner/templates/recipe.php`.
-
-## Usage
-
-When you call the `GetTemplatePart` method of this class, it looks for the template name in the following order:
-
-- child theme
-- parent theme
-- the template folder for the plugin. 
 
 ## Change Log
 
