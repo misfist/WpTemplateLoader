@@ -1,8 +1,17 @@
-# Change Log for Gamajo Template Loader
+# Change Log for WordPress Plugin Template Loader
 
 ## [Unreleased]
 
 _Nothing yet._
+
+## [2.0.0] - Targeted for 2018-09-30 (TBD)
+
+- Converted class and method naming to camelCase.
+- Reformatted code to conform to PSR-2 standard.
+- Added PSR-4 autoloading.
+- Added constructor to class to allow easy customization of filter prefix, theme and plugin template directories.
+- Updated editorconfig file to match PSR-2 standard.
+- Update documentation.
 
 ## [1.3.0] - 2017-03-24
 
