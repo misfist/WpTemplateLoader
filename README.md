@@ -3,7 +3,7 @@ A class that allows loading WordPress template parts in plugins. Based on the [G
 
 ## Description
 
-This class builds upon the `getTemplatePart()` function in WordPress, but allows you to load template parts from your plugin, with built in fallbacks.
+This class builds upon the `get_template_part()` function in WordPress, but allows you to load template parts from your plugin, with built in fallbacks.
 
 This fork uses modern PHP coding standards such as PSR-2 code formatting, PSR-4 autoloading, and namespacing, which eliminates the need to make a copy of the class, or to use Mozart to prefix the class name.
 
@@ -48,10 +48,10 @@ When you call the `GetTemplatePart` method, it looks for the provided template i
   $my_plugin_template_loader->getTemplatePart( 'recipe' );
   ~~~
 
-  Using the parameters used in the instantiation example, it will try to load the template in this order: 
+  Using the parameters from the instantiation example, it will try to load the template in this order: 
   1. `wp-content/themes/child-theme/partials/recipe.php` 
   2. `wp-content/themes/parent-theme/partials/recipe.php`
-  3. `wp-content/plugins/meal-planner/templates/recipe.php`.
+  3. `wp-content/plugins/my-plugin/templates/recipe.php`.
 
 ### Pass data to templates
 
