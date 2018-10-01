@@ -2,7 +2,7 @@
   "name": "rexrana/wp-plugin-template-loader",
   "description": "A class that allows loading WordPress template parts in plugins. Based on the Gamajo Template Loader, adapted to PSR-2 and PSR-4 coding standards",
   "keywords": ["wordpress", "templates"],
-  "homepage": "https://github.com/GaryJones/Gamajo-Template-Loader",
+  "homepage": "https://github.com/rexrana/wp-plugin-template-loader",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
@@ -12,10 +12,10 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/GaryJones/Gamajo-Template-Loader/issues"
+    "issues": "https://github.com/rexrana/wp-plugin-template-loader/issues"
   },
   "require": {
-    "php": ">=7.1"
+    "php": ">=7.0"
   },
   "autoload": {
     "psr-4": {
