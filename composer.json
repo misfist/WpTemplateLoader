@@ -1,25 +1,15 @@
 {
-  "name": "rexrana/wp-plugin-template-loader",
+  "name": "misfist/WpTemplateLoader",
   "description": "A class that allows loading WordPress template parts in plugins. Based on the Gamajo Template Loader, adapted to PSR-2 and PSR-4 coding standards",
   "keywords": ["wordpress", "templates"],
-  "homepage": "https://github.com/rexrana/wp-plugin-template-loader",
+  "homepage": "https://github.com/misfist/WpTemplateLoader",
   "license": "GPL-2.0-or-later",
-  "authors": [
-    {
-      "name": "Peter Hebert, Rex Rana Design and Development Ltd.",
-      "homepage": "https://rexrana.ca/",
-      "role": "Developer"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/rexrana/wp-plugin-template-loader/issues"
-  },
   "require": {
     "php": ">=7.0"
   },
   "autoload": {
     "psr-4": {
-      "RexRana\\WordPressUtils\\": ["src"]
+      "Misfist\\WordPressUtils\\": ["src"]
     }        
   }
 }
